@@ -17,7 +17,7 @@ int main() {
     ranking clube[n];
     for (int i = 0; i < n; i++) {
         clube[i].pontos = 0;
-        scanf(" %15[^\n]%*c", clube[i].Nome); // Corrigido o formato de leitura
+        scanf(" %15[^\n]", clube[i].Nome); // Corrigido o formato de leitura
         scanf("%f %d %d", &clube[i].Valor, &clube[i].Jogadorcaro, &clube[i].titulos);
         scanf("%s", clube[i].OhNeyma); // Limitado a leitura em 3 caracteres (sim\0)
         scanf("%s", clube[i].Flaaamengo); // Limitado a leitura em 3 caracteres (sim\0)
