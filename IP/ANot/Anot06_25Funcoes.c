@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-void read(float *num){
-	printf("digite um numero\n");
-	scanf("%f",num);//*num  num=&num1 scanf= num=&num1
+float mediaV(int *vet,int tam){
+	float soma=0;
+	for(int i=0;i<tam;i++) soma+=vet[i];
+	return soma/tam;
 }
-float media2(float num1,float num2){
-    return (num1+num2)/2;
+void melhores(int vet[5], float media){
+	for(int i=0;i<5;i++) if(vet[i]>=media) printf("%d",vet[i]);
 }
+
 int main(){
-	float num1,num2;
-	read(&num1);
-	read(&num2);
-	printf("%f",media2(num1,num2));
+	int i,v[5];
+	for(i=0;i<5;i++){
+		scanf("%d",&v[i]);
+	}
+	float media=mediaV(v,5);
+	melhores(v,media);
 }
