@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+int *preenche(int tam);
+int main(){
+	int *vet;
+	vet=preenche(5);
+	for(int i=0;i<5;i++)
+	printf("%d",vet[i]);
+	free(vet);
+}
 
 int *preenche(int tam){
 	int *vet;
@@ -11,11 +19,4 @@ int *preenche(int tam){
 	}
 	
 	return vet;
-}
-int main(){
-	int *vet;
-	vet=preenche(5);
-	for(int i=0;i<5;i++)
-	printf("%d",vet[i]);
-	free(vet);
 }
