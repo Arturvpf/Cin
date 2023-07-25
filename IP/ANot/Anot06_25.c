@@ -1,11 +1,17 @@
 #include <stdio.h>
+#include<stdlib.h>
 
-float media(float num1,float num2){
-    return (num1+num2)/2;
+float maior2(float num1,float num2){
+    float maior;
+    if(num1>num2)maior=num1;
+    else maior=num2;
+    return maior;
 }
 int main(){
-    float num1, num2, num3;
-    scanf("%f %f",&num1,&num2);
-    num3=media(num1,num2);
-    printf("%f",num3);
+    float x, y, maior;
+    scanf("%f %f", &x,&y);
+    maior=maior2(x,y);
+    printf("%f",maior);
+    
+
 }
