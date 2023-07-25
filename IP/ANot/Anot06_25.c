@@ -8,9 +8,9 @@ float maior2(float num1,float num2){
     return maior;
 }
 int main(){
-    float x, y, maior;
-    scanf("%f %f", &x,&y);
-    maior=maior2(x,y);
+    float x, y,z, maior;
+    scanf("%f %f %f", &x,&y,&z);
+    maior=maior2(maior2(x,y),z);
     printf("%f",maior);
     
 
