@@ -7,11 +7,14 @@ float maior2(float num1,float num2){
     else maior=num2;
     return maior;
 }
+void printmaior(float x){
+    printf("Maior=%f",x);
+}
 int main(){
     float x, y,z, maior;
+    printf("Nums");
     scanf("%f %f %f", &x,&y,&z);
-    maior=maior2(maior2(x,y),z);
-    printf("%f",maior);
+    printmaior(maior2(maior2(x,y),z));
     
 
 }
