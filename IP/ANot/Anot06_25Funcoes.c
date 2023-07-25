@@ -1,20 +1,14 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-float maior2(float num1,float num2){
-    float maior;
-    if(num1>num2)maior=num1;
-    else maior=num2;
-    return maior;
-}
-void printmaior(float x){
-    printf("Maior=%f",x);
+void swap(float *x,float *y){
+	float t=*x;
+	*x=*y;
+	*y=t;
 }
 int main(){
-    float x, y,z, maior;
-    printf("Nums");
-    scanf("%f %f %f", &x,&y,&z);
-    printmaior(maior2(maior2(x,y),z));
-    
-
+	float x,y;
+	scanf("%f %f", &x,&y);
+	swap(&x,&y);
+	printf("%f %f",x,y);
 }
