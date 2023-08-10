@@ -1,58 +1,56 @@
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <stdlib.h>
 
-typedef struct{
-    int Dinheiro;
-    int NumPeca;
-}Escolha;
+#define MAX_PECA 100
 
-typedef struct{
-    char pec[30];
-    int valor[20];
-    int performance[20];
-}Pecas;
+typedef struct {
+    char tipo[20];
+    int valor;
+    int performance;
+} Peca;
 
-int main(){
-    int naot=0;
-    char Motor[]= "Motor";
-    char Lataria[]= "Lataria";
-    char Roda[]= "Roda";
-    Escolha escolha;
-    Pecas pecas [30];
-    int Cache=0;
-    int resto;
-    int pontos=0;
-    scanf("%d %d", &escolha.Dinheiro, &escolha.NumPeca);
+int main() {
+    int dinheiro, numPecas, i;
+    int performanceTotal = 0;
+    int carroMontado = 0;
+    int dinheiroRestante = 0;
 
-    for(int i=0;i<escolha.NumPeca;i++){
-        scanf(" %s %d %d", pecas[i].pec, &pecas->valor[i], &pecas->performance[i]);
-    }
+    Peca pecas[MAX_PECA];
 
-    if(escolha.NumPeca<=2){
-        printf("Nao foi possivel construir uma caranga...");
-    }
+    
+    scanf("%d %d", &dinheiro, &numPecas);
 
-    else{ 
-        for(int j=2;j<escolha.NumPeca;j++){
-            if(strcmp(pecas[j-2].pec,Motor)==0 && strcmp(pecas[j-1].pec,Roda)==0 && strcmp(pecas[j].pec,Lataria)==0){
-                naot=1;
+    for (i = 0; i < numPecas; i++) {
+        scanf("%s %d %d", pecas[i].tipo, &pecas[i].valor, &pecas[i].performance);
+
+       
+        if (strcmp(pecas[i].tipo, "Motor") == 0 ||
+            strcmp(pecas[i].tipo, "Roda") == 0 ||
+            strcmp(pecas[i].tipo, "Lataria") == 0) {
+            
+           
+            if (dinheiro >= pecas[i].valor) {
+                dinheiro -= pecas[i].valor;
+                performanceTotal += pecas[i].performance;
+                if (strcmp(pecas[i].tipo, "Motor") == 0)
+                    carroMontado |= 1;
+                else if (strcmp(pecas[i].tipo, "Roda") == 0)
+                    carroMontado |= 2;
+                else if (strcmp(pecas[i].tipo, "Lataria") == 0)
+                    carroMontado |= 4;
             }
         }
-        if(naot==0){
-            printf("Nao foi possivel construir uma caranga...");
-        }
-        else{
-            for(int k=0;k<3;k++){
-                Cache=pecas->valor[k]+Cache;
-                pontos=pontos+pecas->performance[k];
-            }
-            if(Cache<escolha.Dinheiro){
-                resto=escolha.Dinheiro-Cache;
-                printf("Minha nave tem uma performance de %d pontos\nE ainda me sobraram %d mangos!", pontos, resto);
-            }
-            else printf("Nao foi possivel construir uma caranga...");
-        }
     }
+
+    
+    if (carroMontado == 7) {
+        printf("Minha nave tem uma performance de %d pontos\n", performanceTotal);
+        if (dinheiro > 0) {
+            printf("E ainda me sobraram %d mangos!\n", dinheiro);
+        }
+    } else {
+        printf("Nao foi possivel construir uma caranga...\n");
+    }
+
+    return 0;
 }
