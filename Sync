@@ -1,0 +1,5 @@
+Sync
+
+git config --global user.email "arturvpf3@gmail.com"
+  git config --global user.name "Arturvpf"
+  
