@@ -1,4 +1,4 @@
 //parte de Anot08_15
-void mostra(char* frase);
+void mostra(int vet[]);
 
 #include"Bib.c"
