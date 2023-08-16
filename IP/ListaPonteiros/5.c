@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 typedef struct {
     int ID;
@@ -56,7 +57,7 @@ int main() {
                     else produtos=NULL;
                     break;
                 }
-            }
+            }//C:\Users\artur\Documents\Cin\IP\ListaPonteiros\5.c
         } 
         else if (strcmp(escolha, "END") == 0) {
             printf("Lista:\n");
