@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "bib.h": "c",
+        "string.h": "c",
+        "string_s.h": "c",
+        "crtdefs.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c"
+    }
+}
