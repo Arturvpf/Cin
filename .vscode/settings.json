@@ -5,6 +5,9 @@
         "string_s.h": "c",
         "crtdefs.h": "c",
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "types.h": "c",
+        "libc-header-start.h": "c",
+        "stddef.h": "c"
     }
 }
