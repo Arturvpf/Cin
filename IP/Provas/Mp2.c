@@ -123,8 +123,8 @@ void InserirOuAtualizar(Cidade* censo, int tam){
         Cidade *tempo=censo; //ponteiro temporario
 
         if((censo[i].cidadaos=(Pessoa*) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){   //alocar e checar
-            for(int j=0;j<tam;j++){
-                tempo[i].cidadaos;
+            for(int k=0;k<tam;k++){
+                free(tempo[k].cidadaos);
             }
             free(tempo);
             printf("Erro de alocacao\n");
@@ -140,7 +140,7 @@ void InserirOuAtualizar(Cidade* censo, int tam){
         printf("Informe o salario da pessoa\n");
         scanf("%.2f",&salario);
         
-        //atualizar ou cadastrar as informacoes
+        //atualizar ou cadastrar as informacoes  //dando erro aqui
         strcpy(censo[i].cidadaos[j].nome,nome);
         strcpy(censo[i].cidadaos[j].raca,raca);
         censo[i].cidadaos[j].idade=idade;
@@ -194,9 +194,9 @@ void Remover(Cidade* censo, int tam){
             Cidade *tempo=censo; //ponteiro temporario
 
             if((censo[i].cidadaos=(Pessoa *) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){ //checar e alocar memoria
-                for(int j=0;j<tam;j++){
-                    tempo[i].cidadaos;
-                }
+                for(int L=0;L<tam;L++){
+                free(tempo[L].cidadaos);
+            }
                 free(tempo);
                 printf("Erro de alocacao\n");
                 exit(1);
