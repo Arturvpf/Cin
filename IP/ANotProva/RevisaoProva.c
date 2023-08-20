@@ -2,34 +2,30 @@
 #include<stdlib.h>
 #include<string.h>
 
+typedef struct{
+    int vetorpordentro[10];
+}Candidatos;
+
 int main(){
 
     FILE *ptr;
 
     char palavra[50];
-    ptr=fopen("monitoria.txt","a+");
+    //Candidatos vetor[10];//fazer com vetor de struct
+    ptr=fopen("monitoria.bin","rb");
 
-    /*Write-> ela vai escrever e apagar tudo que estava antes
-    read-> ela vai ler o arquivo e apenas isso
-    append->escrever no arquivo e manter o que estava la
+    //for(int i=0;i<10;i++){
+    //    scanf("%d",&vetor[i]);
+    //}
+    //fwrite(&vetor,sizeof(int),10,ptr);
+    fread(&vetor,sizeof(int),10,ptr);
 
-    printf("Digite uma palavra\n");
-    scanf(" %s",palavra);
+    for(int i=0;i<10;i++){
+        printf("%d\n",vetor[i]);
+    }
+    //if tamtamtam ==NULL
 
-    fprintf(ptr,"%s\n",palavra);//mermo do printf sendo que o arquivo vem antes, simplesmente*/
-
-    //fscanf(ptr," %[^,],")lê ate a virgula;
-    fscanf(ptr," %[^\n]\n", palavra); //mesmo caso do fprintf
-    printf("%s\n",palavra);
-
-    scanf(" %s",palavra);
-    fprintf(ptr,"%s\n",palavra);
-
-    fscanf(ptr," %[^\n]\n", palavra);
-    printf("%s\n",palavra); 
-    
 
     fclose(ptr);//tem que dar fclose
     
-    //fscanf e fprintf pra txt resolve muita coisa,fgets eh uma boa também
 }
