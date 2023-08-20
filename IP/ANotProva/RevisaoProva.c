@@ -11,6 +11,7 @@ int main(){
     FILE *ptr;
 
     char palavra[50];
+    int vetor[10];
     //Candidatos vetor[10];//fazer com vetor de struct
     ptr=fopen("monitoria.bin","rb");
 
