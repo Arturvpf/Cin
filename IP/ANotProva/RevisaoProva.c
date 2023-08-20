@@ -1,32 +1,49 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct{
-    int vetorpordentro[10];
-}Candidatos;
+typedef struct {
+    char nome[50];
+    int idade;
+    float altura;
+}Pessoa;
 
-int main(){
+
+void carregardados(Pessoa teste){
+    FILE *ptr;
+
+    ptr = fopen("monitoria.txt","r");
+
+    fscanf(ptr, "%s %d %f", (teste).nome, &(teste).idade, &(teste).altura);
+
+    fclose(ptr);
+}
+
+void salvardados(Pessoa teste){
 
     FILE *ptr;
 
-    char palavra[50];
-    int vetor[10];
-    //Candidatos vetor[10];//fazer com vetor de struct
-    ptr=fopen("monitoria.bin","rb");
+    ptr = fopen("monitoria.bin","wb");
 
-    //for(int i=0;i<10;i++){
-    //    scanf("%d",&vetor[i]);
-    //}
-    //fwrite(&vetor,sizeof(int),10,ptr);
-    fread(&vetor,sizeof(int),10,ptr);
+    fwrite(&teste, sizeof(Pessoa), 1, ptr);
 
-    for(int i=0;i<10;i++){
-        printf("%d\n",vetor[i]);
-    }
-    //if tamtamtam ==NULL
+    fclose(ptr);
+}
 
 
-    fclose(ptr);//tem que dar fclose
-    
+int main(){
+
+    FILE * ptr;
+
+    ptr = fopen("monitoria.bin", "rb");
+
+    Pessoa teste;
+
+    fread(&teste,sizeof(Pessoa),1,ptr);
+
+    printf("%s %d %f", teste.nome, teste.idade, teste.altura);
+
+    //carregardados(&teste);
+    //salvardados(teste);
+
+    return 0;
 }
