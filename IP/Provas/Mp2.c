@@ -122,7 +122,7 @@ void InserirOuAtualizar(Cidade* censo, int tam){
     
         Cidade *tempo=censo; //ponteiro temporario
 
-        if((censo[i].cidadaos=(Pessoa*) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){   //alocar e checar
+        if((censo[i].cidadaos=(Pessoa*) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){   //alocar e checar //tem que inicializar cidadaos como NULL?
             for(int k=0;k<tam;k++){
                 free(tempo[k].cidadaos);
             }
