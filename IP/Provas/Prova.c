@@ -91,16 +91,13 @@ pedido *carregaPedidos(int *tamP){
             exit(1);
         }
         
-        
-        pedido *tempo=todosPedidos;
-        
         todosPedidos[(*tamP)-1].tmed=(TMed *)malloc(sizeof(TMed)*(*qtd));  //alocar em TMed a quantidade de medicamentos
         
         if(todosPedidos[(*tamP)-1].tmed==NULL){   //checar alocacao
             for(int i=0;i<(*qtd);i++){
-                free(tempo[i].tmed);
+                free(temp[i].tmed);
             }
-            free(tempo);
+            free(temp);
         }
         fread(todosPedidos[(*tamP)-1].tmed,sizeof(TMed),(*qtd),arq);   //ler conteudo do vetor e armazenar
 
