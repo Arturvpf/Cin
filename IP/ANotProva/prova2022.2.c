@@ -65,7 +65,7 @@ Aluno* carregaAlunos(int *qtdAlunos){
 
     int i=0;
     while(!feof(arq)){
-        fscanf(arq,"%[^,], %s",Nome,CPF);
+        fscanf(arq,"%[^,], %s\n",Nome,CPF);
         //formato: (Nome Do aluno), (CPF do aluno)
         (*qtdAlunos)+=1;
 
