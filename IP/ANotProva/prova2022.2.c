@@ -142,7 +142,7 @@ void ordena (Aluno* alunos, int qtdAlunos)
 void salvaAlunos(Aluno* alunos, int qtdAlunos)
 {
     FILE* arq;
-    arq = fopen("alunos.bin", "w"); //vai escrever em um .bin
+    arq = fopen("alunos.bin", "a+"); //vai escrever em um .bin
     if (arq == NULL)
     {
         printf("ERRO AO ABRIR\n"); //se falhar ao abrir;
