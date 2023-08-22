@@ -96,7 +96,7 @@ pedido *carregaPedidos(int *tamP){
         
         todosPedidos[(*tamP)-1].tmed=(TMed *)malloc(sizeof(TMed)*(*qtd));  //alocar em TMed a quantidade de medicamentos
         
-        if(todosPedidos==NULL){   //checar alocacao
+        if(todosPedidos[(*tamP)-1].tmed==NULL){   //checar alocacao
             for(int i=0;i<(*qtd);i++){
                 free(tempo[i].tmed);
             }
