@@ -118,15 +118,16 @@ TMed **inicializa(){
     }
     for(int i=0;i<20;i++){     //adicionar 2 colunas para cada linha
         estoque[i]=(TMed *)malloc(sizeof(TMed)*(20+(i*2)));
+        if(estoque[i]==NULL){   //verificar se foi alocado
+            for(int i=0;i<20;i++){
+                free(tempo[i]);
+            }
+            free(tempo);
+            printf("Erro de alocacao\n");
+            exit(1);
+            }
     }
-    if(estoque==NULL){   //verificar se foi alocado
-        for(int i=0;i<20;i++){
-            free(tempo[i]);
-        }
-        free(tempo);
-        printf("Erro de alocacao\n");
-        exit(1);
-    }
+    
     for(int i=0;i<20;i++){    //preencher a matriz com 20 quantidade de medicamentos
         for(int j=58;j>=20;j-=2){
             estoque[i][j].qtdM=20;
