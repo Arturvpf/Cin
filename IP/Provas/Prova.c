@@ -129,7 +129,7 @@ TMed **inicializa(){
     }
     
     for(int i=0;i<20;i++){    //preencher a matriz com 20 quantidade de medicamentos
-        for(int j=58;j>=20;j-=2){
+        for(int j=0;j<(i*2)+20;j++){
             estoque[i][j].qtdM=20;
         }
     }
