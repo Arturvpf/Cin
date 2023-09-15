@@ -190,16 +190,22 @@ void Remover(Cidade* censo, int tam){
             }
             censo[i].capacidade--; //retirar essa pessoa na capacidade da cidade
 
+
             //realocar a quantidade de memoria
             Cidade *tempo=censo; //ponteiro temporario
-
-            if((censo[i].cidadaos=(Pessoa *) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){ //checar e alocar memoria
-                for(int L=0;L<tam;L++){
-                free(tempo[L].cidadaos);
+            if(censo[i].capacidade>0){
+                if((censo[i].cidadaos=(Pessoa *) realloc(censo[i].cidadaos,censo[i].capacidade*sizeof(Pessoa)))==NULL){ //checar e alocar memoria
+                    for(int L=0;L<tam;L++){
+                    free(tempo[L].cidadaos);
+                }
+                    free(tempo);
+                    printf("Erro de alocacao\n");
+                    exit(1);
+                }
             }
-                free(tempo);
-                printf("Erro de alocacao\n");
-                exit(1);
+            else {
+                free(censo[i].cidadaos);
+                censo[i].cidadaos=NULL;
             }
         }
     }

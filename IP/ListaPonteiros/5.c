@@ -54,7 +54,10 @@ int main() {
                             exit(1);
                         }
                     }
-                    else produtos=NULL;
+                    else {
+                        free(produtos);
+                        produtos=NULL;
+                    }
                     break;
                 }
             }//C:\Users\artur\Documents\Cin\IP\ListaPonteiros\5.c
