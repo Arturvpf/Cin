@@ -150,7 +150,8 @@ void processaPedido(pedido meuPedido, TMed **estoque, localM *config, int tamC){
             if(strcmp(meuPedido.tmed[i].medic,config[j].medic)==0){
                 fprintf(arq,"separei %d unidades do medicamento %s\n",meuPedido.tmed[i].qtdM,meuPedido.tmed[i].medic);  //printar no arquivo o que foi retirado
                 linha=config[j].linha; coluna=config[j].coluna;   //a linha e a coluna do medicamento para retirar na matriz
-                estoque[linha][coluna].qtdM-=meuPedido.tmed[i].qtdM;    //retirar da matriz a quantidade separada
+                if(estoque[linha][coluna].qtdM>=meuPedido.tmed[i].qtdM)
+                    estoque[linha][coluna].qtdM-=meuPedido.tmed[i].qtdM;    //retirar da matriz a quantidade separada
             }
         }
     }
