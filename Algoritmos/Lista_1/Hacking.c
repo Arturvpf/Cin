@@ -2,7 +2,8 @@
 #include<stdlib.h>
 void MergeSort();
 void merge();
-int Comparar();
+int soma();
+int BS();
 
 int main(){
     int n,k;
@@ -14,8 +15,8 @@ int main(){
     }
     MergeSort(Vet,0,n-1);
 
-    int d=Comparar(Vet,n,k);
-    printf("%d\n",d);
+    
+    printf("%d\n",soma(Vet,n,k));
 
 }
 void MergeSort(int *A,int l, int r){
@@ -53,28 +54,32 @@ void merge(int *A, int l, int r){
         }
             
 }
-int Comparar(int *A,int n, int k){
+int soma(int *A,int n, int k){
+    int s;
     int d=0;
-    int temp;
-    for(int i=0;i<n-1;i++){
-        if((A[i+1]-A[i])==k){
+    for(int i=0;i<n;i++){
+        s=A[i]+k;
+        if(BS(A,n,s)==1){
             d++;
-        }
-        else if(A[i+1]-A[i]<k){
-            int j=i+1;
-            while(j<n ){
-                if((A[j]-A[i])==k){
-                    d++;
-                    break;
-                }
-                j++;
-            }
-        }
-        else{
-            temp=A[i+1];
-            A[i+1]=A[i];
-            A[i]=temp;
         }
     }
     return d;
+    
+}
+
+int BS(int *A,int n,int k){
+   int l=0;
+   int r=n-1;
+   int m;
+   while(l<=r){
+    m=(l+r)/2;
+    if(k==A[m]){
+        return 1;
+    }
+    else if(k<A[m]){
+        r=m-1;
+    }
+    else l=m+1;
+   }
+   return -1;
 }
