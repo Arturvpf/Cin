@@ -1,0 +1,119 @@
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+typedef struct link{
+    int chave;
+    struct link *proximo;
+}Link;
+
+typedef struct{
+    Link *inicio;
+    int tam;
+}Lista;
+void inserir();
+void inserir_na_lista();
+int funcaohash();
+void inicializarTabela();
+void inicializarLista();
+int busca();
+int buscar_na_lista();
+int imprimirvalue();
+
+int main(){
+    int n;
+    int m=1;
+    
+    
+    while(m!=0){
+        if(m!=0){
+            scanf("%d",&m);
+            Lista l[m];
+            int vet[m];
+            inicializarTabela(l,m);
+            for(int i=1;i<m;i++){
+                scanf("%d",&vet[i]);
+            }
+            scanf("%d",&n);
+            int aux=0;
+            int find;
+            int key;
+            int value;
+            while(aux!=n){
+                char opr[6];
+                scanf(" %s",opr);
+                if(strcmp(opr,"add")==0){
+                    scanf("%d %d",&key,&value);
+                    inserir(l,value,m,key);
+                }
+                else {  
+                    scanf("%d",&find);
+                    if(busca(l,find,m)==0){
+                            printf("-1");
+                    }
+                    else printf("%d %d",funcaohash(key,m),imprimirvalue(l,funcaohash(key,m)));
+                }
+                aux++;
+
+            }
+        }
+    }
+}
+
+void inserir_na_lista(Lista *l, int valor){
+    Link *novo = malloc(sizeof(Link));
+
+    novo->chave = valor;
+    novo->proximo = l->inicio;
+    l->inicio = novo;
+    l->tam++;
+    
+}
+void inserir(Lista *t, int valor,int m,int key){
+    int id = funcaohash(key,m);
+    inserir_na_lista(&t[id], valor);
+}
+void inicializarTabela(Lista *t,int m){
+    int i;
+
+    for(i = 0; i < m; i++)
+        inicializarLista(&t[i]);
+}
+int imprimirvalue(Lista *l,int id){
+        Link *aux=l->inicio;
+        for(int i=1;i<=id;i++)
+            aux=aux->proximo;
+        if(aux)
+        return aux->chave;
+    return 0;
+}
+
+void inicializarLista(Lista *l){
+    l->inicio = NULL;
+    l->tam = 0;
+}
+
+int funcaohash(int chave,int m){
+    int temp=(int)floor(((double)chave)/((double)m));
+    return (chave-(m*temp));
+}
+int busca(Lista *l, int chave,int m){
+    int id = funcaohash(chave,m);
+        Link *aux=l->inicio;
+        for(int i=1;i<=id;i++)
+            aux=aux->proximo;
+        if(aux)
+            return id;
+        else
+            return 0;
+}
+
+int buscar_na_lista(Lista *l, int valor){
+    Link *aux = l->inicio;
+    while(aux && aux->chave != valor)
+        aux = aux->proximo;
+    if(aux)
+        return aux->chave;
+    return 0;
+}
