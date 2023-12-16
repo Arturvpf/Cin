@@ -3,31 +3,29 @@
 
 void removeABC(char *str) {
     int len = strlen(str);
-    int i, j = 0;
-
-    for (i = 0; i < len - 2; ++i) {
+    int i, j;
+    for (i = 0; i < len; ++i) {
         if (str[i] == 'A' && str[i + 1] == 'B' && str[i + 2] == 'C') {
-            i += 2;
-        } else {
-            str[j++] = str[i];
+            // Desloca os caracteres para a esquerda para remover "ABC"
+            for (j = i; j < len - 2; ++j) {
+                str[j] = str[j + 3];
+            }
+            len -= 3; // Atualiza o comprimento da string
+            str[len] = '\0'; // Insere o terminador nulo
+            i--; // Volta uma posição para verificar novamente após a remoção
         }
     }
-
-    while (i < len) {
-        str[j++] = str[i++];
-    }
-
-    str[j] = '\0';
 }
 
 int main() {
-    char str[100];
-    printf("Digite a string: ");
-    scanf("%s", str);
+    char string[200001]; // Tamanho máximo de string
+    printf("Digite uma string: ");
+    fgets(string, sizeof(string), stdin);
 
-    removeABC(str);
+    // Remove todas as ocorrências de "ABC"
+    removeABC(string);
 
-    printf("String modificada: %s\n", str);
+    printf("String sem ocorrências de 'ABC': %s\n", string);
 
     return 0;
 }
