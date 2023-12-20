@@ -19,7 +19,7 @@ struct parameter *parameter;
 
 void *thread_sort(void* threadid){
   int arg=*((int *)threadid);
-  mergesort(arg,parameter[*((int *)threadid)].l,parameter[*((int *)threadid)].r);
+  mergesort(parameter[*((int *)threadid)].l,parameter[*((int *)threadid)].r);
   pthread_exit(NULL);
 }
 
@@ -70,24 +70,33 @@ void merge(int p, int q, int r) {
 }
 
 // Divide the array into two subarrays, sort them and merge them
-void mergeSort(int arg,int l,int r) {
-  if (l < r) {
-    num_threads+=2;
-    threads=(pthread_t *) realloc(ids,sizeof(pthread_t)*num_threads);
-    ids=(int *) realloc(ids,sizeof(int)*num_threads);
-    parameter=(struct parameter*) realloc(parameter,sizeof(struct parameter)*num_threads);
-    int aux=ig;
-    for(ig;ig<ig+2;ig++){
-      ids[ig] = (int*) malloc(sizeof(int));
-      *((int *)ids[ig]) = ig;
-      parameter[*((int *)ids[ig])].l=l;
-      parameter[*((int *)ids[ig])].r=m;
-      pthread_create(threads[ig],NULL,thread_sort,(void *)ids[ig]);
-    }
-    merge(l,l + (r - l) / 2, r);
-  }
-}
+void mergeSort(int l, int r) {
+    if (l < r) {
+        num_threads += 2;
+        threads = (pthread_t *)realloc(threads, sizeof(pthread_t) * num_threads);
+        parameter = (struct parameter *)realloc(parameter, sizeof(struct parameter) * num_threads);
+        ids=(int *)realloc(ids,sizeof(int)*num_threads);
+        int m = l + (r - l) / 2;
 
+        parameter[num_threads - 2].l = l;
+        parameter[num_threads - 2].r = m;
+        pthread_create(&threads[num_threads - 2], NULL, thread_sort, (void *)(num_threads - 2));
+
+        parameter[num_threads - 1].l = m + 1;
+        parameter[num_threads - 1].r = r;
+        pthread_create(&threads[num_threads - 1], NULL, thread_sort, (void *)(num_threads - 1));
+
+        //mergeSort(l, m);
+        //mergeSort(m + 1, r);
+
+        // Wait for all threads to finish (join threads)
+        for (int i = num_threads - 2; i < num_threads; i++) {
+            pthread_join(threads[i], NULL);
+        }
+
+        merge(l, m, r);
+    }
+}
 
 
 // Driver program
