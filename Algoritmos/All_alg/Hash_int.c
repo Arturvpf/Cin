@@ -1,4 +1,5 @@
 //No =Link
+#define TAM 5
 typedef struct no{
     int chave;
     struct no *proximo;
