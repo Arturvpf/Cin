@@ -104,7 +104,24 @@ void insert(Dictionary* d, char* value) {
 }
 
 
-//funcao remove 
+//funcao remove  incompleto
+/*int removeItem(List* l) {
+    if (l->curr < 0 || l->curr >= l->listSize) {
+        return -1; // Retorna -1 se o índice atual não estiver dentro dos limites da lista
+    }
+
+    int it = l->listArray[l->curr];
+    int i = l->curr;
+
+    while (i < l->listSize - 1) {
+        l->listArray[i] = l->listArray[i + 1]; // Shift para a esquerda
+        i++;
+    }
+
+    l->listSize--;
+
+    return it;
+}*/
 
 
 
@@ -119,8 +136,8 @@ int main(){
         scanf("%d",&n[j]);
         for(int i=0;i<n[j];i++){
             scanf("%s:%s",op,name);
-            if(strcmp(op,"ADD")==0){
-                
+            if(strcmp(op,"ADD")==0){  //ler operador e o nome
+
             }
             else{
 
