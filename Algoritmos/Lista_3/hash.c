@@ -104,19 +104,27 @@ void insert(Dictionary* d, char* value) {
 }
 
 
-
+//funcao remove 
 
 
 
 int main(){
     int t;
     scanf("%d",&t);
+    int n[t];
     int j=0;
+    char op[5];
+    char name[16];
     while(j<t){
-        int n;
-        scanf("%d",&n);
-        for(int i=0;i<n;i++){
+        scanf("%d",&n[j]);
+        for(int i=0;i<n[j];i++){
+            scanf("%s:%s",op,name);
+            if(strcmp(op,"ADD")==0){
+                
+            }
+            else{
 
+            }
         }
         j++;
     }
