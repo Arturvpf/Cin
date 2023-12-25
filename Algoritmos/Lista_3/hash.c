@@ -1,148 +1,89 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-int TAM;
+#include <stdio.h>
+#include <string.h>
 
-// Estrutura para armazenar uma entrada (chave e valor)
+#define TABLE_SIZE 101
+#define max_s 16
+
 typedef struct {
-    int key;
-    char *value;
-} Entry;
+    int index;
+    char key[max_s + 1];
+} Element;
 
-// Estrutura para armazenar uma lista de entradas
-typedef struct {
-    Entry* entries;
-    int size;
-} List;
-
-// Estrutura para o dicionário
-typedef struct {
-    int m; // tamanho da tabela hash
-    int cnt; // número de elementos no dicionário
-    List* H; // tabela hash como um array de listas
-    int (*h)(int key); // função hash
-} Dictionary;
-int Hash();
-int h();
-Entry *find();
-Entry create_entry();
-Dictionary* create_dict();
-void insert();
-
-int Hash(char str[]){ 
-    return (h(str)%101);
-}
-int h(char str[]){
-    int hash=0;
-    char aux;
-    for(int i=0;i<strlen(str);i++){
-        aux=str[i];
-        hash += aux * (i + 1);
+int Hash(char* key) {
+    int h = 0;
+    for (int i = 0; key[i] != '\0'; i++) {
+        h += (i + 1) * key[i];
     }
-    return hash*19;
+    return (19 * h) % TABLE_SIZE;
 }
 
-// Função para adicionar uma entrada à lista
-void append(List* list, Entry entry) {
-    list->entries = (Entry*) realloc(list->entries, (list->size + 1) * sizeof(Entry));
-    list->entries[list->size] = entry;
-    list->size++;
-}
-// Função para encontrar uma chave no dicionário
-Entry* find(Dictionary* d, int key) {
-    int pos = d->h(key);
-    List* list = &d->H[pos];
-    for (int i = 0; i < list->size; i++) {
-        if (list->entries[i].key == key) {
-            return &list->entries[i];
+void insert(Element table[], char* key) {
+    int index = Hash(key);
+    int j = 0;
+    while (j < 20) { 
+        int pos = (index + j * j + 23 * j) % TABLE_SIZE;
+        if (table[pos].index == -1) {
+            table[pos].index = pos;
+            strncpy(table[pos].key, key, sizeof(table[pos].key) - 1);
+            table[pos].key[sizeof(table[pos].key) - 1] = '\0'; 
+            return;
+        } else if (strcmp(table[pos].key, key) == 0) {
+            
+            return;
         }
+        j++;
     }
-    return NULL;
 }
 
-// Função para criar uma nova entrada
-Entry create_entry(int key, char* value) {
-    Entry entry;
-    entry.key = key;
-    entry.value = strdup(value); // duplica a string para evitar problemas de memória
-    return entry;
-}
-
-// Função para criar um novo dicionário
-Dictionary* create_dict(int size, int (*hash_func)(int)) {
-    Dictionary* d = (Dictionary*) malloc(sizeof(Dictionary));
-    d->m = size;
-    d->cnt = 0;
-    d->H = (List*) malloc(size * sizeof(List));
-    for (int i = 0; i < size; i++) {
-        d->H[i].entries = NULL;
-        d->H[i].size = 0;
-    }
-    d->h = hash_func;
-    return d;
-}
-
-// Função para inserir uma chave e um valor no dicionário
-void insert(Dictionary* d, char* value) {
-    int hashed_key=Hash(value);
-    if (find(d, hashed_key) == NULL) {
-        int pos = d->h(hashed_key);
-        List l=d->H[pos];
-        Entry entry=create_entry(hashed_key,value);
-        append(&l,entry);
-    }
-    else{
-        for(int i=1;i<20;i++){
-            if(find(d, hashed_key+i) == NULL){
-                int pos = d->h(hashed_key);
-                List l=d->H[pos];
-                Entry entry=create_entry(hashed_key,value);
-                append(&l,entry);
-            }
+void delete(Element table[], char* key) {
+    int index = Hash(key);
+    int j = 0;
+    while (j < 20) {
+        int pos = (index + j * j + 23 * j) % TABLE_SIZE;
+        if (strcmp(table[pos].key, key) == 0) {
+            
+            table[pos].index = -1;
+            table[pos].key[0] = '\0'; 
+            return;
         }
+        j++;
     }
 }
 
-
-//funcao remove  incompleto
-/*int removeItem(List* l) {
-    if (l->curr < 0 || l->curr >= l->listSize) {
-        return -1; // Retorna -1 se o índice atual não estiver dentro dos limites da lista
-    }
-
-    int it = l->listArray[l->curr];
-    int i = l->curr;
-
-    while (i < l->listSize - 1) {
-        l->listArray[i] = l->listArray[i + 1]; // Shift para a esquerda
-        i++;
-    }
-
-    l->listSize--;
-
-    return it;
-}*/
-
-
-
-int main(){
+int main() {
     int t;
-    scanf("%d",&t);
-    int n[t];
+    scanf("%d", &t);
     int j=0;
-    char op[5];
-    char name[16];
-    while(j<t){
-        scanf("%d",&n[j]);
-        for(int i=0;i<n[j];i++){
-            scanf("%s:%s",op,name);
-            if(strcmp(op,"ADD")==0){  //ler operador e o nome
-
+    while (j<t) {
+        Element table[TABLE_SIZE];
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            table[i].index = -1;
+        }
+        int n;
+        scanf("%d", &n);
+        char op[max_s + 5]; 
+        while (n--) {
+            scanf("%s", op);
+            char* key = op + 4; 
+            if (strncmp(op, "ADD:", 4) == 0) {
+                insert(table, key);
+            } else if (strncmp(op, "DEL:", 4) == 0) {
+                delete(table, key);
             }
-            else{
-
+        }
+        int count = 0;
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (table[i].index != -1) {
+                count++;
+            }
+        }
+        printf("%d", count);
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (table[i].index != -1) {
+                printf("\n%d:%s", i, table[i].key);
             }
         }
         j++;
     }
+    return 0;
 }
