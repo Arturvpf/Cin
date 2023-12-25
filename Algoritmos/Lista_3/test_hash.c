@@ -1,24 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int main() {
-    // Create a sample hash table
-    struct HashEntry table[100];
-    for (int i = 0; i < 100; i++) {
-        table[i].index = -1;
+#define TABLE_SIZE 101
+
+typedef struct Node {
+    char* key;
+    struct Node* next;
+} Node;
+
+typedef struct HashTable {
+    Node* list[TABLE_SIZE];
+} HashTable;
+
+unsigned int hash(char* key) {
+    unsigned int h = 0;
+    for (int i = 0; key[i] != '\0'; i++) {
+        h += (i + 1) * key[i];
     }
+    return h % TABLE_SIZE;
+}
 
-    // Set the position to test
-    int pos = 42;
+Node* createNode(char* key) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->key = strdup(key);
+    newNode->next = NULL;
+    return newNode;
+}
 
-    // Set the index to -1 to simulate an empty entry
-    table[pos].index = -1;
+void insert(HashTable* table, char* key) {
+    unsigned int index = hash(key);
+    Node* newNode = createNode(key);
+    newNode->next = table->list[index];
+    table->list[index] = newNode;
+}
 
-    // Check if the index is -1
-    if (table[pos].index == -1) {
-        printf("The entry at position %d is empty.\n", pos);
-    } else {
-        printf("The entry at position %d is not empty.\n", pos);
+Node* search(HashTable* table, char* key) {
+    unsigned int index = hash(key);
+    Node* temp = table->list[index];
+    while (temp != NULL) {
+        if (strcmp(temp->key, key) == 0) {
+            return temp;
+        }
+        temp = temp->next;
     }
+    return NULL;
+}
 
-    return 0;
+void printTable(HashTable* table) {
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        Node* temp = table->list[i];
+        printf("Index %d: ", i);
+        while (temp != NULL) {
+            printf("%s -> ", temp->key);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
 }
