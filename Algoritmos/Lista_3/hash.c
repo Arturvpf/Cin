@@ -1,89 +1,135 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define TABLE_SIZE 101
-#define max_s 16
+#define MAX_KEY_LEN 15
 
 typedef struct {
     int index;
-    char key[max_s + 1];
+    char key[MAX_KEY_LEN + 1];
 } Element;
 
+Element table[TABLE_SIZE];
+
+int Hash(char* key);
+
+int findi(char *key);
+void insert(char* key) {  
+    int index = (Hash(key));
+    int pos = index;  //funcao hashing
+    int attempts = 1;
+    if(findi(key) == -1)
+    {
+        if (table[pos].index == -1 ) 
+        {  
+            table[pos].index = pos;  
+            strcpy(table[pos].key, key);
+            return;
+        }
+        else
+        {
+            while (attempts <= 19) 
+            { 
+
+                pos=(Hash(key)+(attempts*attempts)+23*attempts)%101;
+                if (table[pos].index == -1 ) 
+                {  
+                    table[pos].index = pos;  
+                    strcpy(table[pos].key, key);
+                    return;
+                }
+                attempts++;
+            }
+        }
+    }
+    else return;
+}
+
+int findi(char*key){
+    int index=0;
+    while(index < TABLE_SIZE){
+        
+            if(strcmp(table[index].key, key) == 0){
+                
+                return index;
+            }
+            else{
+                index++;
+            }
+        
+    }
+    return -1;
+
+}
+
+void delkey(char* key) {
+    int pos = findi(key);
+    if (pos != -1) { //isso aq
+        table[pos].index = -1;
+        strcpy(table[pos].key,"Cstiliyedas");
+    }
+}
+
 int Hash(char* key) {
-    int h = 0;
+    long long int h = 0;
     for (int i = 0; key[i] != '\0'; i++) {
         h += (i + 1) * key[i];
     }
-    return (19 * h) % TABLE_SIZE;
+    h = h * 19;
+    long long int hashValue = h;
+    
+    return hashValue%101;
 }
-
-void insert(Element table[], char* key) {
-    int index = Hash(key);
-    int j = 0;
-    while (j < 20) { 
-        int pos = (index + j * j + 23 * j) % TABLE_SIZE;
-        if (table[pos].index == -1) {
-            table[pos].index = pos;
-            strncpy(table[pos].key, key, sizeof(table[pos].key) - 1);
-            table[pos].key[sizeof(table[pos].key) - 1] = '\0'; 
-            return;
-        } else if (strcmp(table[pos].key, key) == 0) {
-            
-            return;
-        }
-        j++;
+void resetTable() {
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        table[i].index = -1;
+        strcpy(table[i].key, "");
     }
 }
 
-void delete(Element table[], char* key) {
-    int index = Hash(key);
-    int j = 0;
-    while (j < 20) {
-        int pos = (index + j * j + 23 * j) % TABLE_SIZE;
-        if (strcmp(table[pos].key, key) == 0) {
-            
-            table[pos].index = -1;
-            table[pos].key[0] = '\0'; 
-            return;
-        }
-        j++;
-    }
-}
+
+
 
 int main() {
     int t;
     scanf("%d", &t);
-    int j=0;
-    while (j<t) {
-        Element table[TABLE_SIZE];
+
+    while (t--) {
         for (int i = 0; i < TABLE_SIZE; i++) {
-            table[i].index = -1;
+            table[i].index = -1; 
         }
+
         int n;
         scanf("%d", &n);
-        char op[max_s + 5]; 
+
         while (n--) {
-            scanf("%s", op);
-            char* key = op + 4; 
-            if (strncmp(op, "ADD:", 4) == 0) {
-                insert(table, key);
-            } else if (strncmp(op, "DEL:", 4) == 0) {
-                delete(table, key);
+            char operation[4];
+            char key[MAX_KEY_LEN + 1];
+            scanf("%3s:%15s", operation, key);
+
+            if (strcmp(operation, "ADD") == 0) {
+                insert(key);
+            } else if (strcmp(operation, "DEL") == 0) {
+                delkey(key);
             }
         }
+
         int count = 0;
         for (int i = 0; i < TABLE_SIZE; i++) {
-            if (table[i].index != -1) {
+            if (table[i].index >= 0) {
                 count++;
             }
         }
-        printf("%d", count);
-        for (int i = 0; i < TABLE_SIZE; i++) {
-            if (table[i].index != -1) {
-                printf("\n%d:%s", i, table[i].key);
+        
+            printf("%d\n", count);
+            for (int i = 0; i < TABLE_SIZE; i++) {
+                if (table[i].index >= 0) {
+                    printf("%d:%s\n", table[i].index, table[i].key);
+                }
             }
-        }
-        j++;
+        resetTable();
     }
+
     return 0;
 }
