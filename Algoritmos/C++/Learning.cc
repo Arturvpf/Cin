@@ -50,6 +50,9 @@ int main(){
 
     //auto i=0;  seria o E arbitrario que o professor falou
     //goto Inicio(lembra assembly);  //goto eh um comando que faz o programa voltar para o inicio do programa
+
+
+    
     return 0;
 
 }

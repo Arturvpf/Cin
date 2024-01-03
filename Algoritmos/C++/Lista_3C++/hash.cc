@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include<algorithm>
 
 using namespace std; // Adicione esta linha
 
@@ -12,6 +13,7 @@ struct Element {
 };
 
 Element table[TABLE_SIZE];
+
 
 int Hash(const string& key); // Agora você pode omitir 
 
@@ -41,10 +43,12 @@ void insert(const string& key) {
     }
 }
 
-int findi(const string& key) { // Agora você pode omitir 
+int findi(const string& key) {
     int index = 0;
-    while (index < TABLE_SIZE) {
-        if (table[index].key == key) {
+    while (index < TABLE_SIZE) 
+    {
+        if (table[index].key == key) 
+        {
             return index;
         }
         index++;

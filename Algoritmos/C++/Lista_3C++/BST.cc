@@ -68,6 +68,7 @@ int main()
     int n;
     cin >> n;
     int vet;
+    string str;
 
     for(auto i=0; i<n; i++)
     {

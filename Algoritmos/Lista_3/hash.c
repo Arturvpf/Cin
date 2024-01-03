@@ -48,16 +48,15 @@ void insert(char* key) {
 
 int findi(char*key){
     int index=0;
-    while(index < TABLE_SIZE){
-        
-            if(strcmp(table[index].key, key) == 0){
-                
-                return index;
-            }
-            else{
-                index++;
-            }
-        
+    while(index < TABLE_SIZE)
+    {
+        if(strcmp(table[index].key, key) == 0)
+        {
+            return index;
+        }
+        else{
+            index++;
+        }
     }
     return -1;
 
