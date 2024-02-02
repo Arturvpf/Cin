@@ -3,6 +3,9 @@
         "string.h": "c",
         "ostream": "cpp",
         "iostream": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "queue": "cpp",
+        "deque": "cpp",
+        "vector": "cpp"
     }
 }
