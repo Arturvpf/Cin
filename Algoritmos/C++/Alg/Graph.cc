@@ -1,6 +1,6 @@
 #include <vector>
 #include <list>
-
+// achar a distancia de todos os pontos ate a origem
 class Grafo {
     int V;
     std::vector<std::list<std::pair<int, int>>> adj;
