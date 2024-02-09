@@ -135,34 +135,29 @@ void Graph::topoSort()
         stack.pop();
     }
 }
-void shortestPath(int s, int d)
-{
-    int *dist = new int[v];
-    for(int i=0; i<v; i++)
-        dist[i] = INT_MAX;
-    dist[s] = 0;
-    queue<int> q;
-    q.push(s);
-    while(!q.empty())
-    {
-        int u = q.front();
-        q.pop();
-        for(auto i=adj[u].begin(); i!=adj[u].end(); i++)
-        {
-            if(dist[*i] == INT_MAX)
-            {
-                dist[*i] = dist[u] + 1;
-                q.push(*i);
-            }
-        }
+/*void floydWarshall(int graph[][nV]) {
+  int matrix[nV][nV], i, j, k;
+
+  for (i = 0; i < nV; i++)
+    for (j = 0; j < nV; j++)
+      matrix[i][j] = graph[i][j];
+
+  // Adding vertices individually
+  for (k = 0; k < nV; k++) {
+    for (i = 0; i < nV; i++) {
+      for (j = 0; j < nV; j++) {
+        if (matrix[i][k] + matrix[k][j] < matrix[i][j])
+          matrix[i][j] = matrix[i][k] + matrix[k][j];
+      }
     }
-    cout<<dist[d];
-}
+  }
+  
+}*/
 
 
 int main()
 {
-    Graph g(4);
+  /*Graph g(4);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(1, 2);
@@ -174,7 +169,7 @@ int main()
     int n;
     cin>>n;
     g.DFS(n);
-
+*/
     return 0;
 }
 
