@@ -6,6 +6,7 @@
         "algorithm": "cpp",
         "queue": "cpp",
         "deque": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "list": "cpp"
     }
 }
