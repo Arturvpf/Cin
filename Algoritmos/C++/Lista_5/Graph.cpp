@@ -2,20 +2,21 @@
 #include<queue>
 #include<stack>
 #include<list>
-
+#include<climits>
 using namespace std;
 
 class Graph
 {
 	int v; // no of vertices
 	list<int> *adj; // Pointer to an array containing adjacency lists
-public:
+    public:
 	Graph(int );
 	void addEdge(int , int);
 	void BFS(int);
 	void DFS(int);
     void topoSort();
     void topoSortUtil(int v, bool visited[], stack<int>& stack);
+    void shortestPath(int s, int d);
 };
 
 Graph :: Graph(int vertices)
