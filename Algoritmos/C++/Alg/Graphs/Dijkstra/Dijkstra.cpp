@@ -26,7 +26,7 @@ public:
     /**
      * Construtor da classe Graph.
      * 
-     * @param n O número de vértices do grafo.
+     *  n O número de vértices do grafo.
      */
     Graph(int n) {
         adjacencyList.resize(n);
@@ -35,9 +35,9 @@ public:
     /**
      * Adiciona uma aresta direcionada com peso ao grafo.
      * 
-     * @param from O vértice de origem da aresta.
-     * @param to O vértice de destino da aresta.
-     * @param weight O peso da aresta.
+     * from O vértice de origem da aresta.
+     * to O vértice de destino da aresta.
+     * weight O peso da aresta.
      */
     void addEdge(int from, int to, int weight) {
         adjacencyList[from].push_back({to, weight});
@@ -46,7 +46,7 @@ public:
     /**
      * Retorna o número de vértices do grafo.
      * 
-     * @return O número de vértices do grafo.
+     *  O número de vértices do grafo.
      */
     int size() const {
         return adjacencyList.size();
@@ -55,7 +55,7 @@ public:
     /**
      * Retorna os vizinhos de um vértice no grafo.
      * 
-     * @param vertex O vértice de origem.
+     *  vertex O vértice de origem.
      * @return Um vetor contendo os vizinhos do vértice.
      */
     const vector<Edge>& getNeighbors(int vertex) const {
@@ -66,10 +66,10 @@ public:
 /**
  * Implementação do algoritmo de Dijkstra para encontrar o caminho mais curto em um grafo ponderado.
  * 
- * @param G O grafo.
- * @param s O vértice de origem.
- * @param D Um vetor para armazenar as distâncias mínimas do vértice de origem para cada vértice.
- * @param P Um vetor para armazenar os predecessores de cada vértice no caminho mais curto.
+ *  G O grafo.
+ *  s O vértice de origem.
+ *  D Um vetor para armazenar as distâncias mínimas do vértice de origem para cada vértice.
+ *  P Um vetor para armazenar os predecessores de cada vértice no caminho mais curto.
  */
 void dijkstra(const Graph& G, int s, vector<int>& D, vector<int>& P) {
     int n = G.size();
