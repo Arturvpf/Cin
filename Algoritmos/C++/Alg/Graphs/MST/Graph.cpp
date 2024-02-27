@@ -1,16 +1,11 @@
-#include <climits>
-#include <vector>
-#include <queue>
 #include <iostream>
-#include <stack>
+#include <vector>
 #include <list>
-
-using namespace std;
-
+#include <stack>
 #define UNVISITED 0
 #define VISITED 1
+using namespace std;
 
-#define INF INT_MAX
 class Graph {
     private:
         int numVertices;
@@ -117,7 +112,7 @@ class Graph {
                 }
             }
         }
-        void toposort(int v, stack<int>&s) {//for DFS 
+        void toposort(int v, stack<int>& s) {//for DFS 
             marks[v] = VISITED;
             int w=first(v);
             while(w<numVertices){
@@ -128,21 +123,43 @@ class Graph {
             }
             s.push(v);
         }
-        void Dijkstra(int s, vector<int> &D) {
-            D.resize(numVertices);
-            vector<int> P(numVertices);
-            for(int i=0;i<numVertices;i++){
-                D[i]=INF; P[i]=-1;
-                marks[i]=UNVISITED;
-            }
-            
-            D[s]=0;
-
-            
-        }
 };
+int main() {
+    Graph g;
+    g.create_Graph(5); // Cria um grafo com 5 vértices
 
+    // Adiciona algumas arestas ao grafo
+    g.setEdge(0, 1);
+    g.setEdge(0, 2);
+    g.setEdge(1, 3);
+    g.setEdge(2, 3);
+    g.setEdge(3, 4);
 
-int main(){
-    cout<<"teste"<<endl;
+    // Testa a função DFS
+    cout << "DFS a partir do vértice 0:" << endl;
+    g.DFS(0);
+    cout << endl;
+
+    // Testa a função BFS
+    cout << "BFS a partir do vértice 0:" << endl;
+    g.BFS(0);
+    cout << endl;
+
+    // Testa a função toposort
+    cout << "Ordenação topológica do grafo:" << endl;
+    stack<int> s;
+    for (int i = 0; i < g.getV(); i++) {
+        if (g.getMark(i) == UNVISITED) {
+            g.toposort(i, s);
+        }
+    }
+    while (!s.empty()) {
+        cout << s.top() << " ";
+        s.pop();
+    }
+    cout << endl;
+
+    return 0;
 }
+
+
