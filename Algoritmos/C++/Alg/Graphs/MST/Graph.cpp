@@ -123,6 +123,21 @@ class Graph {
             }
             s.push(v);
         }
+<<<<<<< HEAD:Algoritmos/C++/Alg/Graphs/MST/Graph.cpp
+=======
+        void Dijkstra(int s, vector<int> &D) {
+            D.resize(numVertices);
+            vector<int> P(numVertices);
+            for(int i=0;i<numVertices;i++){
+                D[i]=INF; P[i]=-1;
+                marks[i]=UNVISITED;
+            }
+            
+            D[s]=0;
+    ////dasnd
+            
+        }
+>>>>>>> 5bdf00ea8871377292b30ee5093e1a58dfba306c:Algoritmos/C++/Alg/Dijkstra.cpp
 };
 int main() {
     Graph g;
