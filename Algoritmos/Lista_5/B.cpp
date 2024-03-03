@@ -6,40 +6,32 @@
 #include <set>
 using namespace std;
 
-int main() {
-    int T;
-    cin >> T;
+class Graph {
+public:
+    vector<pair<string, int>> ranking;
+    vector<pair<string, vector<string>>> edges;
+    set<string> added_names;
 
-    while (T--) {
-        int N;
-        cin >> N;
-
-        vector<pair<string, int>> ranking;
-        vector<pair<string, vector<string>>> graph;
-        set<string> added_names; 
-
-        while (N--) {
-            string a, b, c;
-            cin >> a >> b >> c;
-
-            if (!added_names.count(a)) {
-                ranking.push_back({a, -1});
-                added_names.insert(a);
-            }
-            if (!added_names.count(b)) {
-                ranking.push_back({b, -1});
-                added_names.insert(b);
-            }
-            if (!added_names.count(c)) {
-                ranking.push_back({c, -1});
-                added_names.insert(c);
-            }
-
-            graph.push_back({a, {b, c}});
-            graph.push_back({b, {a, c}});
-            graph.push_back({c, {a, b}});
+    void addEdge(string a, string b, string c) {
+        if (!added_names.count(a)) {
+            ranking.push_back({a, -1});
+            added_names.insert(a);
+        }
+        if (!added_names.count(b)) {
+            ranking.push_back({b, -1});
+            added_names.insert(b);
+        }
+        if (!added_names.count(c)) {
+            ranking.push_back({c, -1});
+            added_names.insert(c);
         }
 
+        edges.push_back({a, {b, c}});
+        edges.push_back({b, {a, c}});
+        edges.push_back({c, {a, b}});
+    }
+
+    void bfs() {
         queue<string> q;
         q.push("Ahmad");
         for (auto &it : ranking) {
@@ -53,7 +45,7 @@ int main() {
             string current = q.front();
             q.pop();
 
-            for (auto &it : graph) {
+            for (auto &it : edges) {
                 if (it.first == current) {
                     for (string &neighbor : it.second) {
                         for (auto &it2 : ranking) {
@@ -71,10 +63,30 @@ int main() {
                 }
             }
         }
+    }
+};
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        Graph graph;
+
+        while (N--) {
+            string a, b, c;
+            cin >> a >> b >> c;
+            graph.addEdge(a, b, c);
+        }
+
+        graph.bfs();
 
         vector<pair<int, string>> contestants;
         vector<string> undefined_rank;
-        for (auto& it : ranking) {
+        for (auto& it : graph.ranking) {
             if (it.second == -1) {
                 undefined_rank.push_back(it.first);
             } else {
