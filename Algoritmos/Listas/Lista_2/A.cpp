@@ -1,39 +1,89 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
 
-string beiju_text(string input_string) {
-    vector<char> begin, end;
-    bool home = false;
+using namespace std;  //ta usando biblioteca de lista , fazer sem a biblioteca de lista
+#define MAX 100000
 
-    for (char& c : input_string) { // substitua "char" por "c" ou outro nome de variável
-        if (c == '[') {
-            home = true;
-            reverse(begin.begin(), begin.end());
-        } else if (c == ']') {
-            home = false;
-            reverse(begin.begin(), begin.end());
-        } else {
-            if (home) {
-                begin.push_back(c);
-            } else {
-                end.push_back(c);
-            }
-        }
-    }
+typedef struct node{
+    char item;
+    struct node* next;
+} Node;
 
-    reverse(begin.begin(), begin.end());
-    begin.insert(begin.end(), end.begin(), end.end());
-
-    return string(begin.begin(), begin.end());
+typedef struct{
+    Node *head;
+    Node *tail;
+    Node *curr;
+    int size;
+}List;
+Node *createNode(char element, Node *next){
+    Node *n = new Node;
+    n->item = element;
+    n->next = next;
+    return n;
+}
+Node *createNode(Node* next){
+    Node *n = new Node;
+    n->next = next;
+    return n;
 }
 
-int main() {
-    string input_string;
-    while (getline(cin, input_string)) {
-        cout << beiju_text(input_string) << endl;
+List* createList(){
+    List *l = new List;
+    l->curr =l->head=l->tail=createNode(NULL);
+    l->size = 0;
+    return l;
+}
+void clear(List *l){
+    Node *tmp = l->head;
+    Node *next;
+    while(tmp->next!=NULL){
+        next = tmp->next;
+        delete(tmp);
+        tmp = next;
     }
-
-    return 0;
+    delete tmp
+    delete l;
+}
+void insert(List *l, char item){
+    l->curr->next = createNode(item, l->curr->next);
+    if(l->curr == l->tail){
+        l->tail = l->curr->next;
+    }
+    l->size++;
+    l->curr=l->curr->next;
+}
+void moveToStart(List *l){
+    l->curr = l->head;
+}
+void moveToEnd(List *l){
+    l->curr = l->tail;
+}
+void printList(const List *l){
+    if(l->size>0 && l!=NULL){
+        Node *tmp = l->head;
+        while(tmp->!=NULL){
+            cout << tmp->next->item;
+            tmp = tmp->next;
+        }
+    }
+    cout<<endl;
+}
+int main(){
+    char c;
+    while(cin>>c){
+        List *list=createList();
+            while(c!='\n'){
+                if(c=='['){
+                    moveToStart(list);
+                }
+                else if(c==']'){
+                    moveToEnd(list);
+                }
+                else{
+                    insert(list,c);
+                }
+                cin>>c;
+            }
+            printList(list);
+            clear(list);
+    }
 }
