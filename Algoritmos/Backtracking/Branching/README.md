@@ -1,0 +1,3 @@
+Problema do Caixeiro-Viajante (TSP): Este problema é usado quando um indivíduo (como um vendedor ou um entregador) precisa visitar várias cidades e quer minimizar a distância total percorrida. O objetivo é encontrar a rota mais curta que visita todas as cidades exatamente uma vez e retorna à cidade de origem. Este problema é comumente usado em logística, planejamento de rotas e campos relacionados.
+
+Problema de Atribuição: Este problema é usado quando temos um certo número de tarefas/jobs e um certo número de trabalhadores, e precisamos atribuir cada tarefa a um trabalhador de tal maneira que o custo total (ou tempo) seja minimizado. Este problema é comumente usado em planejamento de recursos, agendamento de tarefas e campos relacionados.
