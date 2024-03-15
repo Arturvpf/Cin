@@ -1,6 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+/*
+Na função ChangeMaking:
+
+D: Este é um vetor de inteiros que representa os diferentes tipos de moedas disponíveis.
+n: Este é o valor total para o qual estamos tentando fazer o troco.
+F: Este é um vetor de inteiros onde F[i] representa o número mínimo de moedas necessárias para fazer o troco para o valor i.
+temp: Esta é uma variável temporária usada para armazenar o número mínimo de moedas necessárias para fazer o troco para o valor i - D[j - 1].
+j: Este é o índice atual do vetor D que estamos considerando.
+A função ChangeMaking retorna o número mínimo de moedas necessárias para fazer o troco para o valor n.
+*/
 
 int ChangeMaking(std::vector<int>& D, int n) {
     std::vector<int> F(n + 1, std::numeric_limits<int>::max());

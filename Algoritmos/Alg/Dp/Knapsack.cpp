@@ -1,6 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+/*
+Na função knapsack:
+
+n: Este é o número total de itens disponíveis.
+W: Esta é a capacidade total da mochila.
+w: Este é um vetor que contém os pesos dos itens.
+v: Este é um vetor que contém os valores dos itens.
+F: Esta é uma matriz onde F[i][j] representa o valor máximo que pode ser obtido considerando os primeiros i itens e uma mochila com capacidade j.
+i e j: Estes são os índices atuais que estamos considerando na matriz F.
+A função knapsack retorna o valor máximo que pode ser obtido ao colocar itens na mochila de tal forma que o peso total dos itens na mochila não exceda a capacidade da mochila.
+*/
 
 int knapsack(int n, int W, std::vector<int>& w, std::vector<int>& v) {
     std::vector<std::vector<int>> F(n + 1, std::vector<int>(W + 1, 0));

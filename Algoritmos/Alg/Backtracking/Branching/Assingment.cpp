@@ -2,7 +2,44 @@
 using namespace std;
 
 #define N 4
+/*
+Na estrutura Node:
 
+parent: Este é um ponteiro para o nó pai na árvore de busca.
+pathCost: Este é o custo do caminho da raiz até este nó.
+cost: Este é o custo total estimado do caminho da raiz até a solução através deste nó.
+workerID: Este é o índice do trabalhador que está sendo atribuído.
+jobID: Este é o índice do trabalho que está sendo atribuído ao trabalhador.
+assigned[N]: Este é um vetor booleano que indica quais trabalhos foram atribuídos.
+Na função newNode:
+
+x e y: Estes são os índices do trabalhador e do trabalho que estão sendo atribuídos.
+assigned[]: Este é o vetor booleano que indica quais trabalhos foram atribuídos.
+parent: Este é o nó pai na árvore de busca.
+Na função calculateCost:
+
+costMatrix[N][N]: Esta é a matriz de custos para atribuir cada trabalho a cada trabalhador.
+x e y: Estes são os índices do trabalhador e do trabalho que estão sendo atribuídos.
+assigned[]: Este é o vetor booleano que indica quais trabalhos foram atribuídos.
+cost: Este é o custo total estimado para atribuir os trabalhos restantes.
+available[N]: Este é um vetor booleano que indica quais trabalhos estão disponíveis para atribuição.
+Na estrutura comp:
+
+lhs e rhs: Estes são ponteiros para os nós que estão sendo comparados. A estrutura comp é usada para ordenar a fila de prioridade de nós na árvore de busca.
+
+
+Na função printAssignments:
+
+min: Este é um ponteiro para o nó que representa a solução mínima encontrada. A função imprime a atribuição de trabalhos a trabalhadores que leva a essa solução mínima.
+Na função findMinCost:
+
+costMatrix[N][N]: Esta é a matriz de custos para atribuir cada trabalho a cada trabalhador.
+pq: Esta é uma fila de prioridade que armazena os nós que ainda precisam ser explorados na árvore de busca. Os nós são ordenados por seu custo total estimado.
+assigned[N]: Este é um vetor booleano que indica quais trabalhos foram atribuídos.
+root: Este é o nó raiz da árvore de busca.
+min: Este é o nó com o menor custo total estimado na fila de prioridade.
+A função findMinCost usa o método Branch and Bound para encontrar a atribuição de trabalhos a trabalhadores que minimiza o custo total. Ela retorna o custo mínimo encontrado.
+*/
 struct Node {
     Node* parent;
     int pathCost;

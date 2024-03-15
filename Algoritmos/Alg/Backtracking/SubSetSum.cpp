@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
-
+/*
+set: Este é o vetor de inteiros que representa o conjunto no qual estamos procurando o subconjunto.
+n: Este é o número de elementos no conjunto (ou no subconjunto do conjunto que estamos atualmente considerando na chamada recursiva).
+sum: Este é o valor que estamos tentando obter a partir da soma dos elementos do subconjunto.
+*/
 bool isSubsetSum(std::vector<int> set, int n, int sum) {
     if (sum == 0)
         return true;

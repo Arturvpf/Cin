@@ -1,6 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+/*
+Na função maxCoin:
+
+coins: Este é um vetor de inteiros que representa os valores das moedas em uma linha.
+n: Este é o número total de moedas na linha.
+dp: Este é um vetor de inteiros onde dp[i] representa o valor máximo que pode ser obtido das primeiras i moedas.
+i: Este é o índice atual do vetor dp que estamos calculando.
+A função maxCoin retorna o valor máximo que pode ser obtido ao pegar moedas da linha, de tal forma que nenhuma duas moedas adjacentes são pegues.
+*/
 
 int maxCoin(std::vector<int>& coins) {
     int n = coins.size();

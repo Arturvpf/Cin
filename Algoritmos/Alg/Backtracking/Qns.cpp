@@ -1,6 +1,15 @@
 #include <iostream>
 #define N 4
+/*
+Na função valid:
 
+M[N][N]: Esta é a matriz que representa o tabuleiro de xadrez. Se M[i][j] é 1, então uma rainha está presente na posição (i, j). Se M[i][j] é 0, então a posição (i, j) está vazia.
+row e col: Estas são as coordenadas da posição atual no tabuleiro. A função valid verifica se é seguro colocar uma rainha na posição (row, col).
+Na função qns:
+
+l: Este é o índice da coluna atual. A função qns tenta colocar uma rainha em cada linha da coluna l.
+M[N][N]: Esta é a matriz que representa o tabuleiro de xadrez, da mesma forma que na função valid.
+*/
 using namespace std;
 
 bool valid(int M[N][N], int row, int col) {

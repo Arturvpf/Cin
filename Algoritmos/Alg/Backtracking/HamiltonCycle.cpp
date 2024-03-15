@@ -1,7 +1,24 @@
 #include<iostream>
 #include<vector>
 #define N 5
+/*
+Na função is_valid:
 
+v: Este é o vértice que estamos tentando adicionar ao caminho.
+graph[N][N]: Esta é a matriz de adjacência que representa o grafo. Se graph[i][j] é 1, então há uma aresta entre os vértices i e j. Se graph[i][j] é 0, então não há aresta entre os vértices i e j.
+path: Este é o vetor que armazena o caminho atual.
+pos: Esta é a posição atual no caminho.
+Na função hamiltonian_cycle_util:
+
+graph[N][N]: Esta é a matriz de adjacência que representa o grafo, da mesma forma que na função is_valid.
+path: Este é o vetor que armazena o caminho atual.
+pos: Esta é a posição atual no caminho.
+Na função hamiltonian_cycle:
+
+graph[N][N]: Esta é a matriz de adjacência que representa o grafo, da mesma forma que nas funções is_valid e hamiltonian_cycle_util.
+path: Este é o vetor que armazena o caminho atual.
+
+*/
 using namespace std;
 
 bool is_valid(int v, bool graph[N][N], vector<int> &path, int pos) {
