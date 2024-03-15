@@ -1,0 +1,7 @@
+ChangeMaking: Este algoritmo é usado quando você tem um valor n e um conjunto de denominações de moedas, e você precisa encontrar o número mínimo de moedas que somam n. É útil em situações do mundo real, como máquinas de venda automática ou caixas eletrônicos, onde você precisa dar troco com o menor número de moedas ou notas possível.
+
+CoinRow: Este algoritmo é usado quando você tem uma linha de moedas com diferentes valores e você precisa pegar o máximo de valor possível, mas a restrição é que você não pode pegar duas moedas adjacentes. Este é um problema de otimização que pode ser aplicado em várias situações do mundo real, como jogos de estratégia ou planejamento de investimentos.
+
+MFKnapsack: Este é uma variação do problema da mochila que usa memoização para melhorar a eficiência. É usado quando você tem um conjunto de itens, cada um com um peso e um valor, e uma mochila com uma capacidade de peso limitada. O objetivo é determinar o conjunto mais valioso de itens para incluir na mochila sem exceder a capacidade de peso. Este problema é comum em situações de otimização de recursos, como planejamento de carga de caminhões ou planejamento de investimentos.
+
+Knapsack: Este é o problema da mochila clássico, semelhante ao MFKnapsack, mas sem o uso de memoização. É usado nas mesmas situações que o MFKnapsack, mas pode ser menos eficiente para grandes conjuntos de dados ou capacidades de mochila grandes.
