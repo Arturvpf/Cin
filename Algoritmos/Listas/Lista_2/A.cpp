@@ -40,7 +40,7 @@ void clear(List *l){
         delete(tmp);
         tmp = next;
     }
-    delete tmp
+    delete tmp;
     delete l;
 }
 void insert(List *l, char item){
@@ -60,7 +60,7 @@ void moveToEnd(List *l){
 void printList(const List *l){
     if(l->size>0 && l!=NULL){
         Node *tmp = l->head;
-        while(tmp->!=NULL){
+        while(tmp!=NULL){
             cout << tmp->next->item;
             tmp = tmp->next;
         }
