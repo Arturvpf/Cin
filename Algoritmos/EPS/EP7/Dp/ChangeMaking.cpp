@@ -12,15 +12,15 @@ j: Este é o índice atual do vetor D que estamos considerando.
 A função ChangeMaking retorna o número mínimo de moedas necessárias para fazer o troco para o valor n.
 */
 
-int ChangeMaking(std::vector<int>& D, int n) {
-    std::vector<int> F(n + 1, std::numeric_limits<int>::max());
+int ChangeMaking(vector<int>& D, int n) {
+    vector<int> F(n + 1, numeric_limits<int>::max());
     F[0] = 0;
 
     for (int i = 1; i <= n; i++) {
-        int temp = std::numeric_limits<int>::max();
+        int temp = numeric_limits<int>::max();
         int j = 1;
         while (j <= D.size() && i >= D[j - 1]) {
-            temp = std::min(F[i - D[j - 1]], temp);
+            temp = min(F[i - D[j - 1]], temp);
             j++;
         }
         F[i] = temp + 1;
@@ -30,11 +30,11 @@ int ChangeMaking(std::vector<int>& D, int n) {
 }
 
 int main() {
-    std::vector<int> coins = {1, 5, 10, 25};
+    vector<int> coins = {1, 5, 10, 25};
     int amount = 37;
 
     int minCoins = ChangeMaking(coins, amount);
-    std::cout << "Minimum number of coins needed: " << minCoins << std::endl;
+    cout << "Minimum number of coins needed: " << minCoins << endl;
 
     return 0;
 }
