@@ -2,7 +2,7 @@ double :: [Int] -> [Int]
 double [] = []
 double (x:xs) = (2*x) : double (xs)
 
-member ::[Int] -> Int -> Bool
+member ::Eq t => [t] -> t -> Bool
 member [] numero = False
 member (y:ys) numero | y== numero = True
                      | y/= numero = member ys numero
