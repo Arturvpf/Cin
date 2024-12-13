@@ -19,3 +19,4 @@ main = do
   fatura <- getLine
   let resultado = logMes mes fatura
   printf "%.1f\n" resultado
+-------WRONG----------
