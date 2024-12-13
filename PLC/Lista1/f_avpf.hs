@@ -13,3 +13,6 @@ main = do
   let readNum = read num :: Int
   let result = somarMultiplos readList readNum
   print result
+
+
+-----Wrong----
