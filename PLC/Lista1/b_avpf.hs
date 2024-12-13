@@ -16,3 +16,6 @@ main = do
   let b = read sb :: [Int]
   let result = mul2 a b
   print result
+
+
+---Correct-----
