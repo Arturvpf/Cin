@@ -14,3 +14,6 @@ main = do
   input <- getLine
   let cp = read input :: Int
   putStrLn $ battleResult cp
+
+
+--Errado Output--
