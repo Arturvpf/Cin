@@ -7,3 +7,4 @@ main :: IO ()
 main = do
   lista <- getLine
   print $ suaviza (read lista :: [Float])
+-----Correct------
