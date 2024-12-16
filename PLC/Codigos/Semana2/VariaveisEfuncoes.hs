@@ -1,3 +1,33 @@
+{-Números Inteiros
+
+• 1,2,3,...:: Int
+
+• +, *, -, ^, div, mod :: Int -> Int -> Int
+• >, >=, ==, /=, <=, < :: Int -> Int -> Bool-
+
+Integer: precisão arbitrária
+• Int: precisão fixa (bounded)
+
+Operadores e funções
+
+• +, *, ^, -, div, mod, abs,negate
+• Relacionais: >, >=, ==, /=,
+<=, <
+
+> 2^3
+8
+> div 14 3
+4
+> 14 `div` 3
+4
+> mod 14 3
+2
+> 14 `mod` 3
+2
+}
+
+
+
 greater :: Int -> Int -> Bool
 greater x y = x > y
 
